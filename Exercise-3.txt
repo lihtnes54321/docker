@@ -1,0 +1,39 @@
+Exercise-3
+
+1) create a container
+   $ docker run -it --name webserver ubuntu:latest
+
+   ## inside container environment, run below commands
+
+   $ apt install apache2 curl
+   $ apt update
+   $ exit
+1) create docker image from a running / existing container
+
+   $ docker ps -a
+
+   $ docker commit <container-name> <image-name>
+
+2) validate docker image structure 
+
+   $ docker history <image-id>
+3) create a container from custom image
+
+   $ docker run -it --name webserver <image id>
+
+   $ root@2349243# apt autoremove curl apache2
+
+   $ root@2349243# exit
+
+   $ docker commit container-id image-name:tag
+
+3) Note the docker intermediate container and image layer structure
+4) note the read-only and writable layers in container structure
+
+## create a new network on Docker host
+
+$ sudo docker network create -d bridge newapp_interface
+$ sudo docker run -dt --net=newapp_interface --name=webapp_container ubuntu:latest
+##validate the container specifications
+
+$ sudo docker inspect webapp_container
